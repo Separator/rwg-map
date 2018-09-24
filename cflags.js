@@ -4,7 +4,7 @@ const sizes = require('./sizes');
 const BYTES_PER_POSITION = 2;
 
 const ENTITIES = {
-    WITHOUT_PONTOONS: Buffer.from([0x80, 0x00]),            // ‭1000 0000‬ 0000 0000
+    WITHOUT_PONTOONS: Buffer.from([0x80, 0x00]),            // ‭1000 0000 0000 0000
     WITHOUT_WAVES: Buffer.from([0x40, 0x00]),               // 0100 0000 0000 0000
     VISIBILITY_UP: Buffer.from([0x20, 0x00]),               // 0010 0000 0000 0000
     VISIBILITY_DOWN: Buffer.from([0x10, 0x00]),             // 0001 0000 0000 0000
