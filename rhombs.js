@@ -112,13 +112,6 @@ const ENTITIES = {
     DRY_SOIL: Buffer.from([0x05, 0x05, 0x00]),              // ‭0000 0101 0000 0101 0000 0000
     WATER: Buffer.from([0x06, 0x06, 0x00]),                 // ‭0000 0110 0000 0110 0000 0000
     SAND: Buffer.from([0x07, 0x07, 0x00]),                  // ‭0000 0111 0000 0111 0000 0000
-
-    /*MOWERS: [
-        Buffer.from([0x00, 0x04]),                          // 0000 0000 0000 0100
-        Buffer.from([0x00, 0x08]),                          // 0000 0000 0000 1000
-        Buffer.from([0x00, 0x10]),                          // 0000 0000 0001 0000
-        Buffer.from([0x00, 0x20]),                          // 0000 0000 0010 0000
-    ]*/
 };
 
 const generate = (size=sizes.SMALL) =>
