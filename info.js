@@ -1,7 +1,7 @@
 "use strict";
 
-const sizes = require('./sizes');
-const schemes = require('./schemes');
+const sizes = require('./structures/sizes');
+const schemes = require('./structures/schemes');
 
 const BYTES_IN_SECTION = 4;
 const sections = {

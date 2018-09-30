@@ -1,6 +1,6 @@
 "use strict";
 
-const sizes = require('./sizes');
+const sizes = require('./structures/sizes');
 const BYTES_PER_RHOMBUS = 8;
 
 // 4 байт - уровень освещённости 00-10-20--f0

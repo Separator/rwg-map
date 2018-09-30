@@ -1,5 +1,8 @@
 const fs = require('fs');
-const desc = require('./desc.js');
+const af = require('./airfields.js');
 
-let name = desc.generate('Сало уронили!!!');
-fs.writeFileSync('desc', name);
+let airfields = af.generate();
+af.setTakeoffPoint(airfields, 0, 1, 0, 0);
+af.setLandingPoint(airfields, 0, 2, 0, 0);
+af.clearLandingPoint(airfields, 0);
+fs.writeFileSync('airfields', airfields);

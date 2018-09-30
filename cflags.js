@@ -1,6 +1,6 @@
 "use strict";
 
-const sizes = require('./sizes');
+const sizes = require('./structures/sizes');
 const BYTES_PER_POSITION = 2;
 
 const ENTITIES = {
