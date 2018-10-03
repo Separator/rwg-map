@@ -1,14 +1,26 @@
 "use strict";
 
 const sizes = require('./structures/sizes');
+
+const defaults = require('./structures/defaults');
+const terrain = require('./structures/terrain');
 const blending = require('./structures/blending');
+const brightness = require('./structures/brightness');
+const textures = require('./structures/textures');
 
-const BYTES_PER_RHOMBUS = 8;
+const BYTES_PER_RHOMBUS =
+    defaults.BYTES_PER_DEFAULT + terrain.BYTES_PER_TERRAIN + blending.BYTES_PER_BLENDING +
+    brightness.BYTES_PER_BRIGHTNESS + textures.BYTES_PER_TEXTURE;
 
-// 4 байт - уровень освещённости 00-10-20--f0
-// 5 байт - тип освещения, 00 - затемнение, 01 - осветление
 
-const ENTITIES = {
+const generate = (size=sizes.SMALL) =>
+    Buffer.alloc(size * size * BYTES_PER_RHOMBUS);
+
+module.exports = {
+    generate
+};
+
+/*const ENTITIES = {
     GRASS: Buffer.from([0x00, 0x00, 0x00]),                 // ‭0000 ‭0000 ‭0000 ‭0000 ‭0000 ‭0000
 
     // top left
@@ -114,11 +126,4 @@ const ENTITIES = {
     DRY_SOIL: Buffer.from([0x05, 0x05, 0x00]),              // ‭0000 0101 0000 0101 0000 0000
     WATER: Buffer.from([0x06, 0x06, 0x00]),                 // ‭0000 0110 0000 0110 0000 0000
     SAND: Buffer.from([0x07, 0x07, 0x00]),                  // ‭0000 0111 0000 0111 0000 0000
-};
-
-const generate = (size=sizes.SMALL) =>
-    Buffer.alloc(size * size * BYTES_PER_RHOMBUS);
-
-module.exports = {
-    generate
-};
+};*/

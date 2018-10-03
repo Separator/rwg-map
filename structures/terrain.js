@@ -1,5 +1,7 @@
 "use strict";
 
+const BYTES_PER_TERRAIN = 1;
+
 const terrain = {
     GRASS: 0x00,
     ARABLE: 0x02,
@@ -14,6 +16,7 @@ const generate = (terrain = terrain.GRASS) =>
     Buffer.from([terrain]);
 
 module.exports = {
+    BYTES_PER_TERRAIN,
     ...terrain,
     generate
 };

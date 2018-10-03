@@ -3,6 +3,7 @@
 const terrain = require('./terrain');
 const blending = require('./blending');
 
+const BYTES_PER_TEXTURE = 2;
 const EMPTY = Buffer.from([0x00, 0x00]);
 const SOIL_FULL = Buffer.from([0x88, 0x00]); //[136]
 
@@ -125,5 +126,6 @@ const generate = (terrainType=terrain.GRASS, blendingType=blending.types.TYPE_00
     textures[terrainType][blendingType];
 
 module.exports = {
+    BYTES_PER_TEXTURE,
     generate
 };

@@ -1,5 +1,7 @@
 "use strict";
 
+const BYTES_PER_BLENDING = 2;
+
 // TYPE_[top left][top right]_[bot left][bot right]
 const types = {
     TYPE_00_00: 0,   // 0000
@@ -22,6 +24,7 @@ const generate = (blendingType = types.TYPE_00_00) =>
     Buffer.from([blendingType, 0x00]);
 
 module.exports = {
+    BYTES_PER_BLENDING,
     types,
     generate
 };

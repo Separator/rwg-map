@@ -1,5 +1,6 @@
 "use strict";
 
+const BYTES_PER_BRIGHTNESS = 2;
 const LEVEL = 0;
 const TYPE = 1;
 const STEP = 0x10;
@@ -33,6 +34,7 @@ const decrement = brightness =>
             generate(brightnessLevel.MAX, brightnessType.LOW);
 
 module.exports = {
+    BYTES_PER_BRIGHTNESS,
     ...brightnessLevel,
     ...brightnessType,
     generate,
