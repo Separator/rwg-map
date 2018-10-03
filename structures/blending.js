@@ -22,6 +22,6 @@ const generate = (blendingType = types.TYPE_00_00) =>
     Buffer.from([blendingType, 0x00]);
 
 module.exports = {
-    ...types,
+    types,
     generate
 };
