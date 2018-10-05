@@ -35,6 +35,8 @@ const decrement = brightness =>
 
 module.exports = {
     BYTES_PER_BRIGHTNESS,
+    level: brightnessLevel,
+    type: brightnessType,
     ...brightnessLevel,
     ...brightnessType,
     generate,

@@ -12,8 +12,8 @@ const terrain = {
     SAND: 0x07
 };
 
-const generate = (terrain = terrain.GRASS) =>
-    Buffer.from([terrain]);
+const generate = (terrainType = terrain.GRASS) =>
+    Buffer.from([terrainType]);
 
 module.exports = {
     BYTES_PER_TERRAIN,
