@@ -1,7 +1,6 @@
 "use strict";
 
 const sizes = require('./structures/sizes');
-
 const defaults = require('./structures/defaults');
 const terrain = require('./structures/terrain');
 const blending = require('./structures/blending');
@@ -39,6 +38,8 @@ const setSingleRhombus = (rhombs, offsetX, offsetY, terrainType, blendingType, b
         offset + BYTES_PER_RHOMBUS
     );
 };
+
+/*const setRhombusSubPoint = (rhombs, offsetX, offsetY)*/
 
 module.exports = {
     generate,
