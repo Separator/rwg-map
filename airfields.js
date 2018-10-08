@@ -3,7 +3,7 @@
 const directions = require('./structures/directions');
 const coordinates = require('./structures/coordinates');
 
-const BYTES_PER_RECORD = coordinates.BIG;
+const BYTES_PER_RECORD = coordinates.BYTES_PER_BIG_COORDINATE;
 const COORDINATE_X_RECORD__NUMBER = 1;
 const COORDINATE_Y_RECORD_NUMBER = 1;
 const DIRECTION_RECORD_NUMBER = 1;

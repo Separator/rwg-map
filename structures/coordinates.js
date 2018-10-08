@@ -1,23 +1,14 @@
 "use strict";
 
-const BYTES_PER_SMALL_COORDINATE = 2;
-const BYTES_PER_BIG_COORDINATE = 4;
-const VALUES_IN_BYTE = 256;
+const digit = require('./digit');
+const BYTES_PER_SMALL_COORDINATE = digit.BYTES_PER_SMALL_DIGIT;
+const BYTES_PER_BIG_COORDINATE = digit.BYTES_PER_BIG_DIGIT;
 
-const generate =(coordinate=0, size=BYTES_PER_BIG_COORDINATE) => {
-    const buf = Buffer.alloc(size);
-    for (let i = 0; i < size; i++) {
-        buf[i] = coordinate % VALUES_IN_BYTE;
-        coordinate = Math.floor(coordinate / VALUES_IN_BYTE);
-        if (!coordinate) {
-            break;
-        }
-    }
-    return buf;
-};
+const generate =(coordinate=0, size=BYTES_PER_BIG_COORDINATE) =>
+    digit.generate(coordinate, size);
 
 module.exports = {
-    SMALL: BYTES_PER_SMALL_COORDINATE,
-    BIG: BYTES_PER_BIG_COORDINATE,
+    BYTES_PER_SMALL_COORDINATE,
+    BYTES_PER_BIG_COORDINATE,
     generate
 };

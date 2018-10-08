@@ -1,6 +1,7 @@
 "use strict";
 
-const BYTES_PER_BLENDING = 2;
+const digit = require('./digit');
+const BYTES_PER_BLENDING = digit.BYTES_PER_SMALL_DIGIT;
 
 // TYPE_[top left][top right]_[bot left][bot right]
 const types = {
@@ -45,7 +46,7 @@ const positions = {
 };
 
 const generate = (blendingType = types.TYPE_00_00) =>
-    Buffer.from([blendingType, 0x00]);
+    digit.generate(blendingType, BYTES_PER_BLENDING);
 
 const add = (blendingRecord=generate(), additionalBlending=types.TYPE_00_00) =>
     generate(mutationKeys[blendingRecord[0] | additionalBlending]);

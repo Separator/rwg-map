@@ -1,40 +1,44 @@
 "use strict";
 
+const digit = require('./digit');
 const terrain = require('./terrain');
 const blending = require('./blending');
+const BYTES_PER_TEXTURE = digit.BYTES_PER_SMALL_DIGIT;
 
-const BYTES_PER_TEXTURE = 2;
-const EMPTY = Buffer.from([0x00, 0x00]);
-const SOIL_FULL = Buffer.from([0x88, 0x00]); //[136]
+const texture = textureNumber =>
+    digit.generate(textureNumber, BYTES_PER_TEXTURE);
+
+const EMPTY = texture(0);
+const SOIL_FULL = texture(136);
 
 const textures = {
     [terrain.GRASS]: {
         [blending.types.TYPE_00_00]: EMPTY,
-        [blending.types.TYPE_11_11]: Buffer.from([0x00, 0x00]),
-        [blending.types.TYPE_00_11]: Buffer.from([0x01, 0x00]),
-        [blending.types.TYPE_00_10]: Buffer.from([0x02, 0x00]),
-        [blending.types.TYPE_10_10]: Buffer.from([0x03, 0x00]),
-        [blending.types.TYPE_10_00]: Buffer.from([0x04, 0x00]),
-        [blending.types.TYPE_11_00]: Buffer.from([0x05, 0x00]),
-        [blending.types.TYPE_01_00]: Buffer.from([0x06, 0x00]),
-        [blending.types.TYPE_01_01]: Buffer.from([0x07, 0x00]),
-        [blending.types.TYPE_00_01]: Buffer.from([0x08, 0x00]),
-        [blending.types.TYPE_11_10]: Buffer.from([0x09, 0x00]),
-        [blending.types.TYPE_11_01]: Buffer.from([0x0a, 0x00]),
-        [blending.types.TYPE_01_11]: Buffer.from([0x0b, 0x00]),
-        [blending.types.TYPE_10_11]: Buffer.from([0x0c, 0x00])
+        [blending.types.TYPE_11_11]: texture(0),
+        [blending.types.TYPE_00_11]: texture(1),
+        [blending.types.TYPE_00_10]: texture(2),
+        [blending.types.TYPE_10_10]: texture(3),
+        [blending.types.TYPE_10_00]: texture(4),
+        [blending.types.TYPE_11_00]: texture(5),
+        [blending.types.TYPE_01_00]: texture(6),
+        [blending.types.TYPE_01_01]: texture(7),
+        [blending.types.TYPE_00_01]: texture(8),
+        [blending.types.TYPE_11_10]: texture(9),
+        [blending.types.TYPE_11_01]: texture(10),
+        [blending.types.TYPE_01_11]: texture(11),
+        [blending.types.TYPE_10_11]: texture(12)
     },
     [terrain.ARABLE]: {
         [blending.types.TYPE_00_00]: EMPTY,
-        [blending.types.TYPE_11_11]: Buffer.from([0x0d, 0x00]),     //[13,14,15,16,19,21,22,23],
-        [blending.types.TYPE_00_11]: Buffer.from([0x1f, 0x00]),     //[31,43,55,63],
-        [blending.types.TYPE_00_10]: Buffer.from([0x23, 0x00]),     //[35,47,67],
-        [blending.types.TYPE_10_10]: Buffer.from([0x21, 0x00]),     //[33,45,65],
-        [blending.types.TYPE_10_00]: Buffer.from([0x24, 0x00]),     //[36,48,68],
-        [blending.types.TYPE_11_00]: Buffer.from([0x1b, 0x00]),     //[27,39,51,59],
-        [blending.types.TYPE_01_00]: Buffer.from([0x25, 0x00]),     //[37,49,69],
-        [blending.types.TYPE_01_01]: Buffer.from([0x35, 0x00]),     //[53,61],
-        [blending.types.TYPE_00_01]: Buffer.from([0x22, 0x00]),     //[34,46,66],
+        [blending.types.TYPE_11_11]: texture(13),
+        [blending.types.TYPE_00_11]: texture(31),
+        [blending.types.TYPE_00_10]: texture(35),
+        [blending.types.TYPE_10_10]: texture(33),
+        [blending.types.TYPE_10_00]: texture(36),
+        [blending.types.TYPE_11_00]: texture(27),
+        [blending.types.TYPE_01_00]: texture(37),
+        [blending.types.TYPE_01_01]: texture(53),
+        [blending.types.TYPE_00_01]: texture(34),
         [blending.types.TYPE_11_10]: Buffer.from([0x1a, 0x00]),     //[26,38,50],
         [blending.types.TYPE_11_01]: Buffer.from([0x1c, 0x00]),     //[28,52,60],
         [blending.types.TYPE_01_11]: Buffer.from([0x1e, 0x00]),     //[30,54,62],

@@ -29,7 +29,7 @@ const generate = (size=sizes.SMALL) =>
     Buffer.concat([...new Array(size * size)].map(() =>
         generateRhombus()), size * size * BYTES_PER_RHOMBUS);
 
-const setRhombusByProps = (rhombs, offsetX, offsetY, terrainType, blendingType, brightnessLevel, brightnessType) => {
+const setRhombusProps = (rhombs, offsetX, offsetY, terrainType, blendingType, brightnessLevel, brightnessType) => {
     let mapSize = Math.sqrt(rhombs.length / BYTES_PER_RHOMBUS);
     let offset = (offsetX + offsetY * mapSize) * BYTES_PER_RHOMBUS;
     return rhombs.fill(
@@ -45,6 +45,15 @@ const getRhombus = (rhombs, offsetX, offsetY) => {
     return rhombs.slice(offset, offset + BYTES_PER_RHOMBUS);
 };
 
+const getRhombusTerrain = (rhombs, offsetX, offsetY) =>
+    getRhombus(rhombs, offsetX, offsetY).slice(OFFSET_TERRAIN, OFFSET_TERRAIN + terrain.BYTES_PER_TERRAIN);
+
+const getRhombusBlending = (rhombs, offsetX, offsetY) =>
+    getRhombus(rhombs, offsetX, offsetY).slice(OFFSET_BLENDING, OFFSET_BLENDING + blending.BYTES_PER_BLENDING);
+
+const getRhombusBrightness = (rhombs, offsetX, offsetY) =>
+    getRhombus(rhombs, offsetX, offsetY).slice(OFFSET_BRIGHTNESS, OFFSET_BRIGHTNESS + brightness.BYTES_PER_BRIGHTNESS);
+
 const setRhombusBrightness = (rhombs, offsetX, offsetY, brightnessLevel, brightnessType) => {
     let rhombus = getRhombus(rhombs, offsetX, offsetY);
     rhombus[OFFSET_BRIGHTNESS] = brightnessLevel;
@@ -55,5 +64,5 @@ const setRhombusSubPoint = (rhombs, offsetX, offsetY)
 
 module.exports = {
     generate,
-    setRhombusByProps
+    setRhombusProps
 };

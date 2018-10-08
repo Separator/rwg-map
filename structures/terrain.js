@@ -1,6 +1,7 @@
 "use strict";
 
-const BYTES_PER_TERRAIN = 1;
+const digit = require('./digit');
+const BYTES_PER_TERRAIN = digit.BYTES_PER_TINY_DIGIT;
 
 const terrain = {
     GRASS: 0x00,
@@ -13,7 +14,7 @@ const terrain = {
 };
 
 const generate = (terrainType = terrain.GRASS) =>
-    Buffer.from([terrainType]);
+    digit.generate(terrainType, BYTES_PER_TERRAIN);
 
 module.exports = {
     BYTES_PER_TERRAIN,
