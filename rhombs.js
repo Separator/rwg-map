@@ -29,7 +29,7 @@ const generate = (size=sizes.SMALL) =>
     Buffer.concat([...new Array(size * size)].map(() =>
         generateRhombus()), size * size * BYTES_PER_RHOMBUS);
 
-const setSingleRhombus = (rhombs, offsetX, offsetY, terrainType, blendingType, brightnessLevel, brightnessType) => {
+const setRhombusByProps = (rhombs, offsetX, offsetY, terrainType, blendingType, brightnessLevel, brightnessType) => {
     let mapSize = Math.sqrt(rhombs.length / BYTES_PER_RHOMBUS);
     let offset = (offsetX + offsetY * mapSize) * BYTES_PER_RHOMBUS;
     return rhombs.fill(
@@ -39,9 +39,21 @@ const setSingleRhombus = (rhombs, offsetX, offsetY, terrainType, blendingType, b
     );
 };
 
-/*const setRhombusSubPoint = (rhombs, offsetX, offsetY)*/
+const getRhombus = (rhombs, offsetX, offsetY) => {
+    let mapSize = Math.sqrt(rhombs.length / BYTES_PER_RHOMBUS);
+    let offset = (offsetX + offsetY * mapSize) * BYTES_PER_RHOMBUS;
+    return rhombs.slice(offset, offset + BYTES_PER_RHOMBUS);
+};
+
+const setRhombusBrightness = (rhombs, offsetX, offsetY, brightnessLevel, brightnessType) => {
+    let rhombus = getRhombus(rhombs, offsetX, offsetY);
+    rhombus[OFFSET_BRIGHTNESS] = brightnessLevel;
+    rhombus[OFFSET_BRIGHTNESS + 1] = brightnessType;
+};
+
+const setRhombusSubPoint = (rhombs, offsetX, offsetY)
 
 module.exports = {
     generate,
-    setSingleRhombus
+    setRhombusByProps
 };
