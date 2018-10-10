@@ -10,13 +10,14 @@ const CELL_WIDTH = 32;
 const CELL_HEIGHT = 32;
 const OFFSET = 8;
 const STEP = 16;
-const SIZE_DEFAULT = 179;
+const MAGIC_NUMBER = 179;
 
 const damage = {
     NONE: 0,
-    DAMAGED_BY_33: 1,
-    DAMAGED_BY_66: 2,
-    DAMAGED_BY_100: 3
+    STEP_1: 1,
+    STEP_2: 2,
+    STEP_3: 3,
+    UNDEFINED: MAGIC_NUMBER
 };
 
 const types = {
@@ -24,26 +25,44 @@ const types = {
     fre: {
         id: null,
         desc: "free objects",
-        damage: [],
-        size: SIZE_DEFAULT
+        damage: [damage.UNDEFINED],
+        size: MAGIC_NUMBER
     },
     lay: {
-
+        id: null,
+        desc: "horizontal objects",
+        damage: [damage.NONE, damage.STEP_1],
+        size: MAGIC_NUMBER
     },
     stand: {
-
+        id: null,
+        desc: "vertical objects",
+        damage: [damage.NONE, damage.STEP_1],
+        size: MAGIC_NUMBER
     },
     tree: {
-
+        id: null,
+        desc: "trees objects",
+        damage: [damage.NONE, damage.STEP_1],
+        size: MAGIC_NUMBER
     },
     trop: {
-
+        id: null,
+        desc: "roads objects",
+        damage: [damage.UNDEFINED],
+        size: MAGIC_NUMBER
     },
     dom: {
-
+        id: null,
+        desc: "buildings objects",
+        damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
+        size: MAGIC_NUMBER
     },
     zabor: {
-
+        id: null,
+        desc: "buildings objects",
+        damage: [damage.NONE],
+        size: []
     },
     cliff: {
 
