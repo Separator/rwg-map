@@ -11,6 +11,8 @@ const CELL_HEIGHT = 32;
 const OFFSET = 8;
 const STEP = 16;
 const MAGIC_NUMBER = 179;
+const FENCE_INDEX = 8;
+const DAMAGED_FENCE_INDEX = 9;
 
 const damage = {
     NONE: 0,
@@ -23,55 +25,121 @@ const damage = {
 const types = {
     bred: null,
     fre: {
-        id: null,
         desc: "free objects",
         damage: [damage.UNDEFINED],
-        size: MAGIC_NUMBER
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 296],
+            [299, 303],
+            [349, 369],
+            [373, 376],
+            [392, 407],
+            [499, 507],
+            [519, 524]
+        ]
     },
     lay: {
-        id: null,
         desc: "horizontal objects",
         damage: [damage.NONE, damage.STEP_1],
-        size: MAGIC_NUMBER
+        index: [MAGIC_NUMBER],
+        amount: [
+            7, 11,
+            [85, 88]
+        ]
     },
     stand: {
-        id: null,
         desc: "vertical objects",
         damage: [damage.NONE, damage.STEP_1],
-        size: MAGIC_NUMBER
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 117],
+            [119, 1019]
+        ]
     },
     tree: {
-        id: null,
         desc: "trees objects",
         damage: [damage.NONE, damage.STEP_1],
-        size: MAGIC_NUMBER
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 127]
+        ]
     },
     trop: {
-        id: null,
         desc: "roads objects",
         damage: [damage.UNDEFINED],
-        size: MAGIC_NUMBER
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 75],
+            [80, 127],
+            [129, 139],
+            [141, 173],
+            [176, 198],
+            [200, 236],
+            [240, 255]
+        ]
     },
     dom: {
-        id: null,
         desc: "buildings objects",
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
-        size: MAGIC_NUMBER
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 63],
+            [66, 67],
+            [70, 362],
+            [371, 421],
+            434, 442,
+            [444, 451],
+            [456, 490],
+            499, 504, 506,
+            [508, 892],
+            [897, 917],
+            [920, 976],
+            [985, 1019]
+        ]
     },
     zabor: {
-        id: null,
-        desc: "buildings objects",
-        damage: [damage.NONE],
-        size: []
+        desc: "fences objects",
+        damage: [damage.NONE, damage.STEP_1, damage.STEP_2],
+        index: [FENCE_INDEX, DAMAGED_FENCE_INDEX],
+        amount: [
+            [24, 31], [32, 39],
+            [64, 66], [72, 74],
+            [104, 105], [112, 113]
+        ]
     },
     cliff: {
-
+        desc: "cliff objects",
+        damage: [damage.UNDEFINED],
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 54],
+            [56, 65],
+            [72, 126]
+        ]
     },
     vor: {
-
+        desc: "crates objects",
+        damage: [damage.UNDEFINED],
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 2], [8, 10], [16, 18], [24, 25],
+            [32, 33], [40, 41], [48, 49], 56,
+            [64, 65], [72, 74], 80,
+            [88, 89], [96, 98], [104, 106],
+            [112, 114], [119, 120]
+        ]
     },
     most: {
-
+        desc: "bridges objects",
+        damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
+        index: [MAGIC_NUMBER],
+        amount: [
+            [0, 22],
+            [24, 31],
+            [34, 37],
+            [40, 53],
+            [55, 63]
+        ]
     }
 };
 
