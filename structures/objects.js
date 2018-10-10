@@ -28,7 +28,7 @@ const types = {
         desc: "free objects",
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 296],
             [299, 303],
             [349, 369],
@@ -42,7 +42,7 @@ const types = {
         desc: "horizontal objects",
         damage: [damage.NONE, damage.STEP_1],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             7, 11,
             [85, 88]
         ]
@@ -51,7 +51,7 @@ const types = {
         desc: "vertical objects",
         damage: [damage.NONE, damage.STEP_1],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 117],
             [119, 1019]
         ]
@@ -60,7 +60,7 @@ const types = {
         desc: "trees objects",
         damage: [damage.NONE, damage.STEP_1],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 127]
         ]
     },
@@ -68,7 +68,7 @@ const types = {
         desc: "roads objects",
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 75],
             [80, 127],
             [129, 139],
@@ -82,7 +82,7 @@ const types = {
         desc: "buildings objects",
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 63],
             [66, 67],
             [70, 362],
@@ -101,7 +101,7 @@ const types = {
         desc: "fences objects",
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2],
         index: [FENCE_INDEX, DAMAGED_FENCE_INDEX],
-        amount: [
+        indexes: [
             [24, 31], [32, 39],
             [64, 66], [72, 74],
             [104, 105], [112, 113]
@@ -111,7 +111,7 @@ const types = {
         desc: "cliff objects",
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 54],
             [56, 65],
             [72, 126]
@@ -121,7 +121,7 @@ const types = {
         desc: "crates objects",
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 2], [8, 10], [16, 18], [24, 25],
             [32, 33], [40, 41], [48, 49], 56,
             [64, 65], [72, 74], 80,
@@ -133,7 +133,7 @@ const types = {
         desc: "bridges objects",
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
         index: [MAGIC_NUMBER],
-        amount: [
+        indexes: [
             [0, 22],
             [24, 31],
             [34, 37],
@@ -143,7 +143,7 @@ const types = {
     }
 };
 
-const generate = (offsetX, offsetY, type, damaged=damage.NONE, index) =>
+const generateBinary = (offsetX, offsetY, type, damaged=damage.NONE, index) =>
     Buffer.concat([
         coordinates.generate(offsetX),
         coordinates.generate(offsetY),
@@ -152,6 +152,42 @@ const generate = (offsetX, offsetY, type, damaged=damage.NONE, index) =>
         digit.generate(index, BYTES_PER_INDEX)
     ]);
 
+const isObjectExists = (objectType, index) => {
+    if ((objectType in types) && types[objectType]) {
+        let result = false;
+        let indexes = types[objectType].indexes;
+        for (let i = 0; i < indexes.length; i++) {
+            if (indexes[i].constructor === Number) {
+                if (indexes[i] === index) {
+                    result = true;
+                    break;
+                }
+            } else {
+                if (indexes[i][0] <= index && index <= indexes[i][1]) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    } else {
+        return false;
+    }
+};
+
+const generate = (objectType, index, offsetX, offsetY, damaged, magic=MAGIC_NUMBER) => {
+    if (isObjectExists(objectType, index)) {
+        if (types[objectType].damage.indexOf(damaged) > -1) {
+            return objectType + ' ' + offsetX + ' ' + offsetY + ' ' + index + ' ' + damaged + ' ' + magic;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+};
+
 module.exports = {
+    generateBinary,
     generate
 };
