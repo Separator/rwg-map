@@ -15,8 +15,13 @@ r.setSingleRhombus(rhombus, 1, 1, terrain.SAND, blending.types.TYPE_10_00, 0, 1)
 //console.log(rhombus);
 fs.writeFileSync('rhombs', rhombus);*/
 
-const digit = require('./structures/digit');
+const fs = require('fs');
 
-let number = digit.generate(310, digit.BYTES_PER_SMALL_DIGIT);
+const obj = require('./objects.js');
 
-console.log(digit.get(number));
+let objects = obj.generate([
+    ['most', 0, 256, 50, 0, 179],
+    ['most', 0, 288, 50, 0, 179]
+]);
+
+fs.writeFileSync('objects', objects);

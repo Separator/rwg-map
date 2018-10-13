@@ -36,8 +36,30 @@ const damage = {
     UNDEFINED: MAGIC_NUMBER
 };
 
+const names = {
+    FREE: 'fre',
+    HORIZONTAL: 'lay',
+    VERTICAL: 'stand',
+    TREES: 'tree',
+    ROADS: 'trop',
+    BUILDINGS: 'dom',
+    FENCES: 'zabor',
+    CLIFF: 'cliff',
+    CRATES: 'vor',
+    BRIDGES: 'most'
+};
+
+const props = {
+    TYPE: 0,
+    OFFSET_X: 1,
+    OFFSET_Y: 2,
+    ID: 3,
+    DAMAGE: 4,
+    INDEX: 5
+};
+
 const generateIndexes = chunk =>
-    [...new Array(chunk[1] - chunk[0] + 1)].map((value, index) => chunk[0]+ index);
+    [...new Array(chunk[1] - chunk[0] + 1)].map((value, index) => chunk[0] + index);
 
 const concatIndexes = indexes =>
     indexes.reduce((rs, chunk) =>
@@ -48,8 +70,7 @@ const concatIndexes = indexes =>
 
 const types = {
     //bred: null,
-    fre: {
-        desc: "free objects",
+    [names.FREE]: {
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -64,8 +85,7 @@ const types = {
         offset: offset.FOUR,
         step: step.EIGHT
     },
-    lay: {
-        desc: "horizontal objects",
+    [names.HORIZONTAL]: {
         damage: [damage.NONE, damage.STEP_1],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -75,8 +95,7 @@ const types = {
         offset: offset.EIGHT,
         step: step.SIXTEEN
     },
-    stand: {
-        desc: "vertical objects",
+    [names.VERTICAL]: {
         damage: [damage.NONE, damage.STEP_1],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -86,8 +105,7 @@ const types = {
         offset: offset.EIGHT,
         step: step.SIXTEEN
     },
-    tree: {
-        desc: "trees objects",
+    [names.TREES]: {
         damage: [damage.NONE, damage.STEP_1],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -96,8 +114,7 @@ const types = {
         offset: offset.EIGHT,
         step: step.SIXTEEN
     },
-    trop: {
-        desc: "roads objects",
+    [names.ROADS]: {
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -112,8 +129,7 @@ const types = {
         offset: offset.FOUR,
         step: step.EIGHT
     },
-    dom: {
-        desc: "buildings objects",
+    [names.BUILDINGS]: {
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -133,8 +149,7 @@ const types = {
         offset: offset.ZERO,
         step: step.THIRTY_TWO
     },
-    zabor: {
-        desc: "fences objects",
+    [names.FENCES]: {
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2],
         index: [FENCE_INDEX, DAMAGED_FENCE_INDEX],
         indexes: concatIndexes([
@@ -145,8 +160,7 @@ const types = {
         offset: offset.SIXTEEN,
         step: step.THIRTY_TWO
     },
-    cliff: {
-        desc: "cliff objects",
+    [names.CLIFF]: {
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -157,8 +171,7 @@ const types = {
         offset: offset.ZERO,
         step: step.SIXTEEN
     },
-    vor: {
-        desc: "crates objects",
+    [names.CRATES]: {
         damage: [damage.UNDEFINED],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -171,8 +184,7 @@ const types = {
         offset: offset.FOUR,
         step: step.EIGHT
     },
-    most: {
-        desc: "bridges objects",
+    [names.BRIDGES]: {
         damage: [damage.NONE, damage.STEP_1, damage.STEP_2, damage.STEP_3],
         index: [MAGIC_NUMBER],
         indexes: concatIndexes([
@@ -214,6 +226,7 @@ module.exports = {
     offset,
     step,
     damage,
+    props,
     generateBinary,
     generate
 };
