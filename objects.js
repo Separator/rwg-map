@@ -16,23 +16,47 @@ const generate = (objectsList=[]) =>
         )
     );
 
+const find = (objectsList, object1) =>
+    objectsList.findIndex(object2 =>
+        object1[props.TYPE] === object2[props.TYPE] &&
+        object1[props.OFFSET_X] === object2[props.OFFSET_X] &&
+        object1[props.OFFSET_Y] === object2[props.OFFSET_Y]
+    );
+
+const remove = (objectsList, object1) =>
+    objectsList.filter(object2 =>
+        object1[props.TYPE] !== object2[props.TYPE] ||
+        object1[props.OFFSET_X] !== object2[props.OFFSET_X] ||
+        object1[props.OFFSET_Y] !== object2[props.OFFSET_Y]
+    );
+
 const isObjectLowerThan = (object1, object2) =>
+    object2[props.OFFSET_Y]  <  object1[props.OFFSET_Y] ||
     object2[props.OFFSET_Y] === object1[props.OFFSET_Y] &&
-    object2[props.OFFSET_X] < object1[props.OFFSET_X] ||
+    object2[props.OFFSET_X]  <  object1[props.OFFSET_X];
 
-
-
-    object2[props.OFFSET_X] === object1[props.OFFSET_X] &&
-    object2[props.OFFSET_Y] === object1[props.OFFSET_Y];
-
-const add = (objectsList=[], object) => {
+const add = (objectsList=[], object1) => {
+    let objectIndex = find(objectsList, object1);
+    if (objectIndex !== -1) {
+        objectsList = remove(objectsList, object1);
+    }
     if (objectsList.length) {
-
+        let buff = [...objectsList].reverse();
+        let index = buff.findIndex(object2 =>
+            isObjectLowerThan(object1, object2)
+        );
+        if (index === -1) {
+            return [object1, ...objectsList];
+        } else {
+            return [...buff.splice(index, 0, object1)].reverse();
+        }
     } else {
-        return objectsList.concat([object]);
+        return [object1];
     }
 };
 
 module.exports = {
-    generate
+    generate,
+    add,
+    remove
 };
