@@ -60,7 +60,7 @@ const setRhombusBrightness = (rhombs, offsetX, offsetY, brightnessLevel, brightn
     rhombus[OFFSET_BRIGHTNESS + 1] = brightnessType;
 };
 
-const setRhombusSubPoint = (rhombs, offsetX, offsetY)
+//const setRhombusSubPoint = (rhombs, offsetX, offsetY)
 
 module.exports = {
     generate,
