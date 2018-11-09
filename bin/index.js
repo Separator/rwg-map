@@ -15,13 +15,22 @@ let data = validate({
     'destination': ['string', undefined, false]
 });
 
-if (data && routines[data.action]) {
-    let result = routines[data.action](data);
-    stopProgram(
-        result.code ? result.message : null,
-        result.code ? '' : result.message,
-        result.code
-    );
+if (data) {
+    if ("version" in data) {
+        let packageInfo = require('../package');
+        stopProgram(null, packageInfo.version, 0);
+    } else {
+        if (data.action in routines) {
+            let result = routines[data.action](data);
+            stopProgram(
+                result.code ? result.message : null,
+                result.code ? '' : result.message,
+                result.code
+            );
+        } else {
+            stopProgram("Parameters are incorrect");
+        }
+    }
 } else {
     stopProgram("Parameters are incorrect");
 }
