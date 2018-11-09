@@ -16,7 +16,7 @@
     "url": "https://github.com/Separator/rwg-map/issues"
   },
   "bin": {
-    "dosomethingawesome": "./bin/demo-global.js"
+    "rwg": "./bin/index.js"
   },
   "homepage": "https://github.com/Separator/rwg-map#readme",
   "dependencies": {
