@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const routines = require('../lib/index');
-const validate = require('../lib/utils/validate');
+const validate = require('../lib/utils/validate').validate;
 
 const stopProgram = (err, data, code=1) => {
     console.log(err || data || '');
