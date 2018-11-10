@@ -1,0 +1,21 @@
+{
+  "airFields": [{
+    "takeoffPoint": {
+      "x": 1,
+      "y": 1,
+      "direction": "east"
+    },
+    "landingPoint": {
+      "x": 3,
+      "y": 3,
+      "direction": "east"
+    }
+  }],
+  "meta": {
+    "author": "Separator",
+    "name": "test",
+    "scheme": "summer",
+    "size": 128,
+    "version": "0.0.2"
+  }
+}

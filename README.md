@@ -19,20 +19,20 @@ npm i https://github.com/Separator/rwg-map.git -g
 ```
 Если всё прошло успешно, запустите команду:
 ```
-rwg --version
+rwg -v
 ```
 Вам должна вернуться текущая версия утилиты.
 
 ## Использование  
 Утилита принимает следующие параметры:  
-* **action** Действие (generate);
-* **destination** Путь к папке для сохранения результата работы;
-* **source** Путь к json-файлу источнику данных (обязательный);
-* **version** Вывод текущей версии утилиты.  
+* **-action** Действие (generate);
+* **-destination** Путь к папке для сохранения результата работы;
+* **-source** Путь к json-файлу источнику данных (обязательный);
+* **-v** или **-version** Вывод текущей версии утилиты.  
 
 Пример:  
 ```
-rwg --source=my-map.json --destination=C:\Games\RWG3.45\Editor\Maps.src\map.000
+rwg -source=my-map.json -destination=C:\Games\RWG3.45\Editor\Maps.src\map.000
 ```
 
 ## Формат json-файла  

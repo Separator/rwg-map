@@ -1,6 +1,6 @@
 {
   "name": "rwg-map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Separator/rwg-map#readme",
   "dependencies": {
-    "iconv-lite": "^0.4.24"
+    "deepmerge": "^2.2.1",
+    "iconv-lite": "^0.4.24",
+    "to-integer": "^1.0.1"
   }
 }

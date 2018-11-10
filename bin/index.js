@@ -9,14 +9,15 @@ const stopProgram = (err, data, code=1) => {
 };
 
 let data = validate({
-    'version': ['string', undefined, false],
-    'action': ['string', undefined, true],
+    'action': ['string', "generate", false],
+    'destination': ['string', undefined, false],
     'source': ['string', undefined, false],
-    'destination': ['string', undefined, false]
+    'v': [()=>true, undefined, false],
+    'version': [()=>true, undefined, false]
 });
 
 if (data) {
-    if ("version" in data) {
+    if (("version" in data) || ("v" in data)) {
         let packageInfo = require('../package');
         stopProgram(null, packageInfo.version, 0);
     } else {
