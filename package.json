@@ -1,6 +1,6 @@
 {
   "name": "rwg-map",
-  "version": "0.0.2",
+  "version": "0.0.30",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
